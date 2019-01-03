@@ -22,9 +22,15 @@ en <- base::as.Date(paste(stats::end(x_ts)[1], new_end), format="%Y %j")
 fill_date <- a[grep(st, a):grep(en, a)]
 
 round <- 0
-while(length(x_ts)!=length(fill_date) & round < 10) {   
+while(length(x_ts) > length(fill_date) & round < 10) {   
   round <- round + 1 ;                                 
-  en <- en + 1; print(paste(en), 1)
+  en <- en + 1; # print(paste(en), 1)
+  fill_date <- a[grep(st, a):grep(en, a)];  
+}
+
+while(length(x_ts) < length(fill_date) & round < 10) {   
+  round <- round + 1 ;                                 
+  en <- en - 1; # print(paste(en), 1)
   fill_date <- a[grep(st, a):grep(en, a)];  
 }
 
